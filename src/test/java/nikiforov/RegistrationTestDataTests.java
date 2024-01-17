@@ -22,9 +22,10 @@ public class RegistrationTestDataTests extends TestBase {
             randomYear = getRandomYear(),
             randomSubjects = getRandomSubject(),
             randomHobbies = getRandomHobbie(),
-            randomAddress = faker.address().fullAddress();
+            randomAddress = faker.address().fullAddress(),
+            randomState = getRandomState(),
+            randomCity = getRandomCity(randomState);
 
-//            randomState = getRandomState();
 
 
 
@@ -41,8 +42,8 @@ public class RegistrationTestDataTests extends TestBase {
                 .choseHobbies(randomHobbies)
                 .loadImage("image.jpg")
                 .setAddress(randomAddress)
-                .choseState("NCR")
-                .choseCity("Delhi")
+                .choseState(randomState)
+                .choseCity(randomCity)
                 .pressSubmit();
 
         registrationPage.checkRegistrationResult ("Student Name", randomFirstName)
@@ -54,7 +55,7 @@ public class RegistrationTestDataTests extends TestBase {
                 .checkRegistrationResult("Hobbies",randomHobbies)
                 .checkRegistrationResult("Picture","image.jpg")
                 .checkRegistrationResult("Address",randomAddress)
-                .checkRegistrationResult("State and City","NCR Delhi");
+                .checkRegistrationResult("State and City",randomCity);
     }
 
     @Test
